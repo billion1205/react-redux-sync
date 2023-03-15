@@ -1,5 +1,6 @@
 import ProductItem from "./ProductItem";
 import classes from "./Products.module.css";
+import {useSelector} from "react-redux";
 
 const DUMMY_PRODUCTS = [
   {
@@ -17,11 +18,12 @@ const DUMMY_PRODUCTS = [
 ];
 
 const Products = (props) => {
+  const carts=useSelector(state=>state.cart.items)
   return (
     <section className={classes.products}>
       <h2>Buy your favorite products</h2>
       <ul>
-        {DUMMY_PRODUCTS.map((product) => (
+        {carts.map((product) => (
           <ProductItem
             key={product.id}
             id={product.id}
