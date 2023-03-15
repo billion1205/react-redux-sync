@@ -1,17 +1,20 @@
-import Card from '../UI/Card';
-import classes from './ProductItem.module.css';
-import {useDispatch} from "react-redux";
-import {cartActions} from "../../store/cart-slice";
+import Card from "../UI/Card";
+import classes from "./ProductItem.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../store/cart-slice";
 
 const ProductItem = (props) => {
-  const {id, title, price, description } = props;
-  const dispatch=useDispatch();
+  const { id, title, price, description } = props;
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
 
   const addToCartHandler = () => {
+
+    //다시 사용할 코드
     dispatch(cartActions.addItemToCart({
       id, title, price, description
     }))
-  }
+  };
 
   return (
     <li className={classes.item}>
